@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm ts-node-dev --respawn *.ts "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.3"
   }
 }
