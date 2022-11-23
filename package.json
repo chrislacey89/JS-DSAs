@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm ts-node-dev --respawn *.ts "
+    "dev": "pnpm node --watch index.js"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "*",
-    "nodemon": "^2.0.20"
+    "@types/node": "*"
   }
 }
