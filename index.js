@@ -13,9 +13,8 @@ function insertionSort(array) {
 }
 
 function swap(i, j, array) {
-  const temp = array[j];
-  array[j] = array[i];
-  array[i] = temp;
+  [array[i], array[j]] = [array[j], array[i]];
 }
 
-exports.insertionSort = insertionSort;
+const nums = [8, 5, 2, 9, 5, 6, 3];
+console.log(insertionSort(nums));
