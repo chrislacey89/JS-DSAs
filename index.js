@@ -1,20 +1,16 @@
-// Best: O(n) time | O(1) space
-// Average: O(n^2) time | O(1) space
-// Worst: O(n^2) time | O(1) space
-function insertionSort(array) {
-  for (let i = 1; i < array.length; i++) {
-    let j = i;
-    while (j > 0 && array[j] < array[j - 1]) {
-      swap(j, j - 1, array);
-      j -= 1;
+function semordnilap(words) {
+  // Write your code here.
+  const resultMap = {};
+  const results = [];
+  for (let i = 0; i < words.length; i++) {
+    resultMap[words[i]] = 1;
+    const reversedString = words[i].split("").reverse("").join("");
+    if (resultMap[reversedString]) {
+      results.push([words[i], reversedString]);
     }
   }
-  return array;
+  return results;
 }
 
-function swap(i, j, array) {
-  [array[i], array[j]] = [array[j], array[i]];
-}
-
-const nums = [8, 5, 2, 9, 5, 6, 3];
-console.log(insertionSort(nums));
+const words = ["abc", "diaper", "cba", "repaid"];
+console.log(semordnilap(words));
