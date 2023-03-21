@@ -8,38 +8,41 @@ export class Node {
     this.children.push(new Node(name));
     return this;
   }
+  // O(V + E) time | O(V) space
+  // V - number of vertices in the graph
+  // E - number of edges in the graph
+  // Data structure Used: Queue
+  breadthFirstSearch() {
+    let currentNode = this;
+    let list = [];
+    let queue = [];
+    queue.push(currentNode);
+    while (queue.length > 0) {
+      currentNode = queue.shift();
+      list.push(currentNode.name);
+      if (currentNode.children.length) {
+        for (const child of currentNode.children) {
+          queue.push(child);
+        }
+      }
+    }
+    return list;
+  }
   
   // O(V + E) time | O(V) space
   // V - number of vertices in the graph
   // E - number of edges in the graph
-  // Data structure Used: Stack
-  depthFirstSearch() {
-    let currentNode = this;
-    let list = [];
-    let stack = [];
-    stack.push(currentNode);
-    while (stack.length > 0) {
-      currentNode = stack.pop();
-      list.push(currentNode.name);
-      if (currentNode.children.length) {
-        for (const child of currentNode.children) {
-          stack.push(child);
-        }
+  // Data structure Used: Queue
+  breadthFirstSearchR(queue, list) {
+    if (!queue.length) return list;
+    const currentNode = queue.shift();
+    list.push(currentNode.name);
+    if (currentNode.children.length) {
+      for (const child of currentNode.children) {
+        queue.push(child);
       }
     }
-    return list
-  }
-
-  // O(V + E) time | O(V) space
-  // V - number of vertices in the graph
-  // E - number of edges in the graph
-  // Data structure Used: Stack
-  depthFirstSearchR(array) {
-    array.push(this.name);
-    for (const child of this.children) {
-      child.depthFirstSearchR(array);
-    }
-    return array;
+    return this.breadthFirstSearchR(queue, list);
   }
 }
 // Test for graph
@@ -50,10 +53,8 @@ graph.children[2].addChild("G").addChild("H");
 graph.children[0].children[1].addChild("I").addChild("J");
 graph.children[2].children[0].addChild("K");
 console.log(JSON.stringify(graph));
-console.log(graph.depthFirstSearchR([]));
-console.log(graph.depthFirstSearch([]));
-
-
+console.log(graph.breadthFirstSearch());
+console.log(graph.breadthFirstSearchR([graph], []));
 // ! Expected Output
 // [
 //   'A', 'B', 'E', 'F',

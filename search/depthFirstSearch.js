@@ -8,14 +8,21 @@ export class Node {
     this.children.push(new Node(name));
     return this;
   }
+  
+  // O(V + E) time | O(V) space
+  // V - number of vertices in the graph
+  // E - number of edges in the graph
+  // Data structure Used: Stack
+  depthFirstSearch() {
+   
+  }
 
-  // O(v + 2) time | O(v) space
-  depthFirstSearch(array) {
-    array.push(this.name);
-    for (const child of this.children) {
-      child.depthFirstSearch(array);
-    }
-    return array;
+  // O(V + E) time | O(V) space
+  // V - number of vertices in the graph
+  // E - number of edges in the graph
+  // Data structure Used: Stack
+  depthFirstSearchR(array) {
+    
   }
 }
 // Test for graph
@@ -26,7 +33,9 @@ graph.children[2].addChild("G").addChild("H");
 graph.children[0].children[1].addChild("I").addChild("J");
 graph.children[2].children[0].addChild("K");
 console.log(JSON.stringify(graph));
+console.log(graph.depthFirstSearchR([]));
 console.log(graph.depthFirstSearch([]));
+
 
 // ! Expected Output
 // [
