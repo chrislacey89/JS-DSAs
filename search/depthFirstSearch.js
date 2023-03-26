@@ -8,13 +8,26 @@ export class Node {
     this.children.push(new Node(name));
     return this;
   }
-  
+
   // O(V + E) time | O(V) space
   // V - number of vertices in the graph
   // E - number of edges in the graph
   // Data structure Used: Stack
   depthFirstSearch() {
-   
+    let currentNode = this;
+    let list = [];
+    let stack = [];
+    stack.push(currentNode);
+    while (stack.length > 0) {
+      currentNode = stack.pop();
+      list.push(currentNode.name);
+      if (currentNode.children.length) {
+        for (const child of currentNode.children) {
+          stack.push(child);
+        }
+      }
+    }
+    return list;
   }
 
   // O(V + E) time | O(V) space
@@ -22,7 +35,11 @@ export class Node {
   // E - number of edges in the graph
   // Data structure Used: Stack
   depthFirstSearchR(array) {
-    
+    array.push(this.name);
+    for (const child of this.children) {
+      child.depthFirstSearchR(array);
+    }
+    return array;
   }
 }
 // Test for graph
@@ -35,7 +52,6 @@ graph.children[2].children[0].addChild("K");
 console.log(JSON.stringify(graph));
 console.log(graph.depthFirstSearchR([]));
 console.log(graph.depthFirstSearch([]));
-
 
 // ! Expected Output
 // [
